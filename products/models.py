@@ -19,9 +19,7 @@ class Product(models.Model):
     price = models.FloatField(_("Price"))
     flag = models.CharField(_("Flag") , max_length=10 , choices=FLAG_OPTION)
     quantity = models.IntegerField(_("Quantity"))
-    brand = ''
-    category = ''
-
+    
 
 
 class ProductImages(models.Model):
