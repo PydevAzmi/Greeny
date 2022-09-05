@@ -116,12 +116,12 @@
             <div class="header-content">
                 <div class="header-media-group">
                     <button class="header-user"><img src=" {% static 'images/user.png' %} " alt="user"></button>
-                    <a href="index.html"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                    <a href="index.html"><img src="{{info.logo.url}}" alt="logo"></a>
                     <button class="header-src"><i class="fas fa-search"></i></button>
                 </div>
 
                 <a href="index.html" class="header-logo">
-                    <img src="{% static 'images/logo.png' %}" alt="logo">
+                    <img src="{{info.logo.url}}" alt="logo">
                 </a>
                 <a href="login.html" class="header-widget" title="My Account">
                     <img src="{% static 'images/user.png' %}" alt="user">
@@ -166,16 +166,16 @@
                     <div class="navbar-content">
                         <ul class="navbar-list">
                             <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">home</a>
-                                <ul class="dropdown-position-list">
+                                <a class="navbar-link" href="{% url 'products:product_list' %}">Products</a>
+                                <!--ul class="dropdown-position-list">
                                     <li><a href="home-grid.html">Home grid</a></li>
                                     <li><a href="index.html">Home index</a></li>
                                     <li><a href="home-classic.html">Home classic</a></li>
                                     <li><a href="home-standard.html">Home standard</a></li>
                                     <li><a href="home-category.html">Home category</a></li>
-                                </ul>
+                                </ul-->
                             </li>
-                            <li class="navbar-item dropdown-megamenu">
+                            <!-- li class="navbar-item dropdown-megamenu">
                                 <a class="navbar-link dropdown-arrow" href="#">shop</a>
                                 <div class="megamenu">
                                     <div class="container">
@@ -228,7 +228,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </li>
+                            </li -->
                             <li class="navbar-item dropdown-megamenu">
                                 <a class="navbar-link dropdown-arrow" href="#">category</a>
                                 <div class="megamenu">
@@ -359,8 +359,8 @@
                                 </div>
                             </li>
                             <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">pages</a>
-                                <ul class="dropdown-position-list">
+                                <a class="navbar-link " href="{% url 'products:brand_list' %}">Brands</a>
+                                <!-- ul class="dropdown-position-list">
                                     <li><a href="faq.html">faqs</a></li>
                                     <li><a href="offer.html">offers</a></li>
                                     <li><a href="profile.html">my profile</a></li>
@@ -372,18 +372,18 @@
                                     <li><a href="blank-page.html">blank page</a></li>
                                     <li><a href="error.html">404 Error</a></li>
                                     <li><a href="email-template.html">email template</a></li>
-                                </ul>
+                                </ul -->
                             </li>
                             <li class="navbar-item dropdown">
-                                <a class="navbar-link dropdown-arrow" href="#">authentic</a>
-                                <ul class="dropdown-position-list">
+                                <a class="navbar-link " href="#">Orders</a>
+                                <!--ul class="dropdown-position-list">
                                     <li><a href="login.html">login</a></li>
                                     <li><a href="register.html">register</a></li>
                                     <li><a href="reset-password.html">reset password</a></li>
                                     <li><a href="change-password.html">change password</a></li>
-                                </ul>
+                                </ul-->
                             </li>
-                            <li class="navbar-item dropdown">
+                            <!-- li class="navbar-item dropdown">
                                 <a class="navbar-link dropdown-arrow" href="#">blogs</a>
                                 <ul class="dropdown-position-list">
                                     <li><a href="blog-grid.html">blog grid</a></li>
@@ -391,7 +391,7 @@
                                     <li><a href="blog-details.html">blog details</a></li>
                                     <li><a href="blog-author.html">blog author</a></li>
                                 </ul>
-                            </li>
+                            </li-->
                         </ul>
                         <div class="navbar-info-group">
                             <div class="navbar-info">
@@ -968,16 +968,15 @@
                 <div class="col-sm-6 col-xl-3">
                     <div class="footer-widget">
                         <a class="footer-logo" href="#">
-                            <img src="images/logo.png" alt="logo">
+                            <img src="{{ info.logo.url }}" alt="logo">
                         </a>
-                        <p class="footer-desc">Adipisci asperiores ipsum ipsa repellat consequatur repudiandae quisquam
-                            assumenda dolor perspiciatis sit ipsum dolor amet.</p>
+                        <p class="footer-desc">{{info.desc}}</p>
                         <ul class="footer-social">
-                            <li><a class="icofont-facebook" href="#"></a></li>
-                            <li><a class="icofont-twitter" href="#"></a></li>
-                            <li><a class="icofont-linkedin" href="#"></a></li>
-                            <li><a class="icofont-instagram" href="#"></a></li>
-                            <li><a class="icofont-pinterest" href="#"></a></li>
+                            <li><a class="icofont-facebook" href="{{info.fb_link}}"></a></li>
+                            <li><a class="icofont-twitter" href="{{info.twit_link}}"></a></li>
+                            <li><a class="icofont-linkedin" href="{{info.linkedin_link}}"></a></li>
+                            <li><a class="icofont-instagram" href="{{info.insta_link}}"></a></li>
+                            <li><a class="icofont-pinterest" href=""></a></li>
                         </ul>
                     </div>
                 </div>
@@ -988,15 +987,15 @@
                             <li>
                                 <i class="icofont-ui-email"></i>
                                 <p>
-                                    <span>support@greeny.com</span>
-                                    <span>carrer@greeny.com</span>
+                                   
+                                    <span>{{info.email_us}}</span>
                                 </p>
                             </li>
                             <li>
                                 <i class="icofont-ui-touch-phone"></i>
                                 <p>
-                                    <span>+120 279 532 13</span>
-                                    <span>+120 279 532 14</span>
+                                    <span>{{info.call_us}}</span>
+                                   
                                 </p>
                             </li>
                             <li>
@@ -1071,6 +1070,7 @@
     <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
     <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
     <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+    <script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %} "></script>
 
     <!-- CUSTOM -->
     <script src="{% static 'js/nice-select.js' %}"></script>
@@ -1078,7 +1078,9 @@
     <script src="{% static 'js/accordion.js' %}"></script>
     <script src="{% static 'js/venobox.js' %}"></script>
     <script src="{% static 'js/slick.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %} "></script>
     <script src="{% static 'js/main.js' %}"></script>
+    
     <!--=====================================
                     JS LINK PART END
         =======================================-->
