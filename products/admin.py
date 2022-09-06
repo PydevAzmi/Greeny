@@ -11,9 +11,16 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['flag','category']
     search_fields = ['name' , 'desc' , 'subtitle']
 
+class BrandTabular(admin.TabularInline):
+    model = Brand
+
+class BrandAdmin(admin.ModelAdmin):
+    inlines = [BrandTabular]
+    
+
 # Register your models here.
 admin.site.register(Product,ProductAdmin)
 admin.site.register(Brand)
 admin.site.register(ProductImages)
-admin.site.register(Category)
+admin.site.register(Category,BrandAdmin)
 admin.site.register(ProductReview)

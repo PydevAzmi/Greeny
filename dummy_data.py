@@ -21,7 +21,7 @@ def seed_category(n):
         name = fake.name()
         image = f"products/category/{images[random.randint(0,5)]}"
         Category.objects.create(
-            name = name, 
+            name = name,
             image = image
         )
     print(f"successfuilly added {n} category")
@@ -71,7 +71,7 @@ def seed_product(n):
             flag = flag,
             quantity = quantity,
             # cahnge range numbers with corrrect id in next time
-            brand = Brand.objects.get(id = random.randint(23,42)),       # id -> 23 : 37 + ( n if you add brands)
+            brand = Brand.objects.get(id = random.randint(23,62)),       # id -> 23 : 62 + ( n if you add brands)
             category = Category.objects.get(id = random.randint(13,22))  # id -> 13 : 22 + ( n if you add categories)
 
         )
@@ -84,8 +84,8 @@ def seed_ProductImages():
         '17.jpg','18.jpg','19.jpg','20.jpg','21.jpg','22.jpg','23.jpg',
     ]
     
-    for i in range(220,620):
-
+    for i in range(220,720):
+        
         image = f"products/product_images/{images[random.randint(0,22)]}"
 
         ProductImages.objects.create(
@@ -100,7 +100,7 @@ def seed_ProductImages():
 #seed_ProductImages()
 #seed_category(10)
 #seed_brand(20)
-#seed_product(400)
+#seed_product(100)
 
 
 
