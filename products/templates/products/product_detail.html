@@ -4,7 +4,7 @@
 
     {% block css %}
     <link rel="stylesheet" href=" {% static 'css/product-details.css' %}">
-    {% endblock %}
+    {% endblock css %}
     {% block body %}
     <!--=====================================
                 PRODUCT VIEW START
@@ -116,7 +116,7 @@
     <!--=====================================
                 BANNER PART START
         =======================================-->
-    <section class="single-banner inner-section" style="background: url(images/single-banner.jpg) no-repeat center;">
+    <section class="single-banner inner-section" style="background: url({% static 'images/single-banner.jpg' %}) no-repeat center;">
         <div class="container">
             <h2>product detail</h2>
             <ol class="breadcrumb">

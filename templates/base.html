@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1070,7 +1069,7 @@
     <script src="{% static 'vendor/niceselect/nice-select.min.js' %}"></script>
     <script src="{% static 'vendor/slickslider/slick.min.js' %}"></script>
     <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
-    <script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %} "></script>
+    
 
     <!-- CUSTOM -->
     <script src="{% static 'js/nice-select.js' %}"></script>
@@ -1078,7 +1077,7 @@
     <script src="{% static 'js/accordion.js' %}"></script>
     <script src="{% static 'js/venobox.js' %}"></script>
     <script src="{% static 'js/slick.js' %}"></script>
-    <script src="{% static 'js/isotope.js' %} "></script>
+    {% block CSS-brand_list %}  {% endblock CSS-brand_list %}
     <script src="{% static 'js/main.js' %}"></script>
     
     <!--=====================================

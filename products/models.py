@@ -58,7 +58,6 @@ class Brand(models.Model):
     image = models.ImageField(_("Image"), upload_to ='products/brands/')
     category = models.ForeignKey('Category', related_name='brand_category', verbose_name=_('Category'),on_delete=models.CASCADE )
 
-
     def __str__(self):
         return self.name
 

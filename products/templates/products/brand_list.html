@@ -170,7 +170,7 @@
                                 <div class="brand-media">
                                     <img src="{{brand.image.url}}" alt="brand">
                                     <div class="brand-overlay">
-                                        <a href="brand-single.html"><i class="fas fa-link"></i></a>
+                                        <a href="{% url 'products:brand_detail' brand.id %}"><i class="fas fa-link"></i></a>
                                     </div>
                                 </div>
 
@@ -213,3 +213,10 @@
                         BRAND LIST PART END
             =======================================-->
 {% endblock body %}
+
+
+{% block CSS-brand_list %}
+<script src="{% static 'vendor/isotope/isotope.pkgd.min.js' %} "></script>
+<script src="{% static 'js/isotope.js' %} "></script>
+{% endblock CSS-brand_list %}
+

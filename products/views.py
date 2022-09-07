@@ -1,3 +1,4 @@
+from itertools import product
 from multiprocessing import get_context
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
@@ -26,6 +27,11 @@ class BrandList(ListView):
 
 class BrandDetail(DetailView):
     model = Brand
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.all
+        return context
+    
 
 
 class CategoryList(ListView):
