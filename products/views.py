@@ -24,6 +24,7 @@ def prodcut_list(request):
 # Class Based View  
 class ProductList(ListView):
     model = Product
+    paginate_by = 12
     # ListView ^-^
     # context  -> product_list or object_list
     # templete -> must named -> product_list.html 
@@ -38,6 +39,7 @@ class ProductDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
+    
 
     # override get_context_data with other context  
     def get_context_data(self, **kwargs):
@@ -51,12 +53,13 @@ class BrandList(ListView):
 
 
 class BrandDetail(DetailView):
-    model = Brand
+    model = Brand 
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         brand = self.get_object()
         context['product_brand'] = Product.objects.filter(brand=brand)
-        context['count_brand'] = brand.product_count()
+        context['number'] = brand.product_count()
         return context
     
 

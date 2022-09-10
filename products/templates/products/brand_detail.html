@@ -144,7 +144,8 @@
                 <li class="fas fa-star"></li>
                 <li class="total">(163 ratings)</li>
             </ul>
-            <p>{{count_brand__my_count}} items</p>
+            <p>{% for value in number.values %} {{value}} {%endfor%} items</p>
+            
         </div>
         <!--=====================================
                   BRAND SINGLE PART END
