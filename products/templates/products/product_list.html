@@ -135,7 +135,7 @@
                                         {% if page_obj.has_next %}
                                             {% if page_obj.has_next and page_obj.next_page_number < page_obj.paginator.num_pages %}
                                                 <li class="page-item"><a class="page-link" href="?page={{i|add:'+1'}}">{{i|add:"+1"}}</a></li>
-                                                {% if page_obj.number < 40  %}
+                                                {% if page_obj.number < page_obj.paginator.num_pages|add:'-2'  %}
                                                     <li class="page-item">...</li>
                                                 {% endif %}
                                                 <li class="page-item">

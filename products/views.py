@@ -32,7 +32,7 @@ def prodcut_list(request):
 # Class Based View  
 class ProductList(ListView):
     model = Product
-    paginate_by = 12
+    paginate_by = 24
     # ListView ^-^
     # context  -> product_list or object_list
     # templete -> must named -> product_list.html 
