@@ -7,6 +7,7 @@ from django.views.generic import ListView, DetailView
 from .models import Product ,Brand, Category ,ProductImages 
 from django.db.models.aggregates import Count
 from django.db.models import Value ,F
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -19,7 +20,14 @@ def prodcut_list(request):
     # products = Product.objects.filter(price__lt = 50 )                # less than
     
     products = Product.objects.filter(price__gt = 50 )
-    return render(request, 'products/product_list_test.html', {'products':products})
+
+    # Show 25 products per page.
+    paginator = Paginator(products, 25) 
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
+    return render(request, 'products/product_list_test.html', { 'products':products , 'page_obj': page_obj })
 
 # Class Based View  
 class ProductList(ListView):
@@ -39,7 +47,7 @@ class ProductDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
-    
+   
 
     # override get_context_data with other context  
     def get_context_data(self, **kwargs):
@@ -66,3 +74,4 @@ class BrandDetail(DetailView):
 
 class CategoryList(ListView):
     model = Category
+    

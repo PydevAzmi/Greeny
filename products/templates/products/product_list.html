@@ -32,9 +32,9 @@
                             <div class="filter-show">
                                 <label class="filter-label">Show :</label>
                                 <select class="form-select filter-select">
-                                    <option value="1">12</option>
-                                    <option value="2">24</option>
-                                    <option value="3">36</option>
+                                    <option value="{{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</option>
+                                    <option value="{{ page_obj.paginator.num_pages }}">24</option>
+                                    <option value="{{ page_obj.paginator.num_pages }}">36</option>
                                 </select>
                             </div>
                             <div class="filter-short">
@@ -107,30 +107,60 @@
                     {% endfor %}
 
                 </div>
+                {% if is_paginated %}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="bottom-paginate">
-                            <p class="page-info">Showing 12 of 60 Results</p>
+
+                            <p class="page-info">Showing 12 of {{page_obj.paginator.count}} Results</p>
+                            
                             <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                                            <i class="fas fa-long-arrow-alt-left"></i>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li> <i class="fas fa-long-arrow-alt-left"></i></li>
+                                {% endif %}
+
+                                {% for i in paginator.page_range  %}
+                                    {% if page_obj.number == i  %} 
+                                        {% if page_obj.has_previous and page_obj.previous_page_number > 1  %}
+                                            <li class="page-item"><a class="page-link" href="?page={{i|add:'-2'}}">{{i|add:"-2"}}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?page={{i|add:'-1'}}">{{i|add:"-1"}}</a></li>
+                                        {% endif %}
+                                        <li class="page-item"><a class="page-link active" href="?page={{i}}">{{i}}</a></li>
+                                        {% if page_obj.has_next %}
+                                            {% if page_obj.has_next and page_obj.next_page_number < page_obj.paginator.num_pages %}
+                                                <li class="page-item"><a class="page-link" href="?page={{i|add:'+1'}}">{{i|add:"+1"}}</a></li>
+                                                {% if page_obj.number < 40  %}
+                                                    <li class="page-item">...</li>
+                                                {% endif %}
+                                                <li class="page-item">
+                                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages}}</a>
+                                                </li>
+                                             {% endif %}
+                                         {% endif %}
+                                   {% endif %}
+                                {% endfor %}
+                                
+
+                                {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-long-arrow-alt-left"></i>
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                        <i class="fas fa-long-arrow-alt-right "></i>
                                     </a>
                                 </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">...</li>
-                                <li class="page-item"><a class="page-link" href="#">60</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">
-                                        <i class="fas fa-long-arrow-alt-right"></i>
-                                    </a>
-                                </li>
+                                {% else %}
+                                 <li><i class="fas fa-long-arrow-alt-right disabled"></i></li>
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </section>
         <!--=====================================
