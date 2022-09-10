@@ -185,7 +185,7 @@
                         <h3 class="details-name"><a href="#">{{object}}</a></h3>
                         <div class="details-meta">
                             <p>SKU:<span>{{object.sku}}</span></p>
-                            <p>BRAND:<a href="#">{{object.product_brand.objects.name}}</a></p>
+                            <p>BRAND:<a href="{% url 'products:brand_detail' object.brand.id %}">{{object.brand}}</a></p>
                         </div>
                         <div class="details-rating">
                             <i class="active icofont-star"></i>

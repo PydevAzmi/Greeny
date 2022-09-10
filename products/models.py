@@ -1,3 +1,6 @@
+
+from email.policy import default
+from itertools import count
 from operator import imod
 from django.db import models
 from django.utils.translation import gettext as _
@@ -6,6 +9,7 @@ from django.utils import timezone
 from django.core.validators import MaxValueValidator , MinValueValidator
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
+from django.db.models.aggregates import Count
 # Create your models here.
 
 
@@ -36,10 +40,12 @@ class Product(models.Model):
         return self.name
 
     
+        
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Product,self).save(*args, **kwargs)
     
+
 
 
 class ProductImages(models.Model):
@@ -61,6 +67,10 @@ class Brand(models.Model):
     def __str__(self):
         return self.name
 
+    def product_count(self):
+        return self.product_brand.aggregate(my_count = Count('brand'))
+        
+
 
 
 class Category(models.Model):
@@ -69,6 +79,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 
 

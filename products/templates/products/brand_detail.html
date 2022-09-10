@@ -120,7 +120,7 @@
                 <h2>Brand Single</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="brand-list.html">brand-list</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'products:brand_list' %}">brand-list</a></li>
                     <li class="breadcrumb-item active" aria-current="page">brand-single</li>
                 </ol>
             </div>
@@ -144,7 +144,7 @@
                 <li class="fas fa-star"></li>
                 <li class="total">(163 ratings)</li>
             </ul>
-            <p></p>
+            <p>{{count_brand__my_count}} items</p>
         </div>
         <!--=====================================
                   BRAND SINGLE PART END
@@ -180,10 +180,7 @@
                     </div>
                 </div>
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
-                    {% for product in products  %}
-                   
-                    {% if product.brand == object %}
-                  
+                    {% for product in product_brand  %}  
                     <div class="col">
                         <div class="product-card">
                             <div class="product-media">
@@ -212,7 +209,7 @@
                                     <a href="product-video.html">(3)</a>
                                 </div>
                                 <h6 class="product-name">
-                                    <a href="product-video.html">{{product}}</a>
+                                    <a href="{% url 'products:product_detail' product.id %}">{{product}}</a>
                                 </h6>
                                 <h6 class="product-price">
                                     <del>$34</del>
@@ -230,7 +227,7 @@
                             </div>
                         </div>
                     </div>
-                    {% endif %}
+                   
                      {% endfor %}
                 </div>
                 <div class="row">

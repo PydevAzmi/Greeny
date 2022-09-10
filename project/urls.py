@@ -23,7 +23,8 @@ from .settings import MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('products/' , include('products.urls', namespace = 'products'))
+    path('products/' , include('products.urls', namespace = 'products')),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 if settings.DEBUG:
