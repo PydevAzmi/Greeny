@@ -96,7 +96,7 @@ def seed_ProductImages():
     print(f"successfuilly added {i-220} products Images")
 
 
-## to add data  
+## to add data :
 #seed_ProductImages()
 #seed_category(10)
 #seed_brand(20)
