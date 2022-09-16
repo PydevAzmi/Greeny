@@ -1,6 +1,6 @@
 import random
 
-def generate_code(length=8):
+def generate_code(length=9):
     numbers = '0123456789'
     code = ''.join(random.choice(numbers) for _ in range(length))
     return code 
