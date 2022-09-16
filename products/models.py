@@ -1,6 +1,7 @@
 
 from email.policy import default
 from itertools import count
+from msilib.schema import Class
 from operator import imod
 from django.db import models
 from django.utils.translation import gettext as _
@@ -29,21 +30,24 @@ class Product(models.Model):
     price = models.FloatField(_("Price"))
     flag = models.CharField(_("Flag") , max_length=10 , choices=FLAG_OPTION)
     quantity = models.IntegerField(_("Quantity")) 
-    brand = models.ForeignKey( 'Brand' , related_name='product_brand' , on_delete=models.SET_NULL , null = True , blank=True )
-    category = models.ForeignKey( 'Category' , related_name='product_category' , on_delete=models.SET_NULL , null = True , blank=True ) 
+    brand = models.ForeignKey('Brand', verbose_name=_('Brand'), related_name='product_brand', on_delete=models.SET_NULL , null = True , blank=True )
+    category = models.ForeignKey('Category', verbose_name='Category' , related_name='product_category' , on_delete=models.SET_NULL , null = True , blank=True ) 
     tags = TaggableManager()
     # add slug to url 
     slug = models.SlugField(_("Slug"),null=True , blank= True)
     
-    
+      
     def __str__(self):
         return self.name
 
     
-        
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Product,self).save(*args, **kwargs)
+
+
+    
+
     
 
 
