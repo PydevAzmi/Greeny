@@ -13,7 +13,12 @@ urlpatterns = [
     path('testing/', prodcut_list  ),
 
 
-    path('api/products/',api.ProductList.as_view()),
-    path('api/products/<int:pk>',api.ProductDetail.as_view())
+    path('api/products/<int:pk>',api.ProductDetailAPI.as_view()),
+    path('api/products/',api.ProductListAPI.as_view()),
+    path('api/brand/', api.BrandListAPI.as_view()),
+    path('api/brand/<int:pk>', api.BrandDetailAPI.as_view()),
+    path('api/category/',api.CategoryListAPI.as_view()),
+    path('api/category/<int:pk>',api.CategoryDetailAPI.as_view()),
+
 
 ]

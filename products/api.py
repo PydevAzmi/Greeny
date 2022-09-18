@@ -1,7 +1,8 @@
+from winreg import QueryInfoKey
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view
 from .serializer import ProductSerializer ,BrandSerializer, CategorySerializer
-from .models import Product
+from .models import Brand, Product, Category
 
 
 #### using Functions ####
@@ -21,16 +22,35 @@ from .models import Product
 
 #### using Generic Views ####
 # rest_framework import Generics
-from rest_framework import generics 
+from rest_framework import generics
+
+from products import serializer 
 
 
 
-class ProductList(generics.ListAPIView):
+class ProductListAPI(generics.ListAPIView):
     
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
 
 
-class ProductDetail(generics.RetrieveAPIView):
+class ProductDetailAPI(generics.RetrieveAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()
+
+
+class BrandListAPI(generics.ListAPIView):
+    serializer_class = BrandSerializer
+    queryset = Brand.objects.all()
+
+class BrandDetailAPI(generics.RetrieveAPIView):
+    serializer_class = BrandSerializer
+    queryset = Brand.objects.all()
+
+class CategoryListAPI(generics.ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+class CategoryDetailAPI(generics.RetrieveAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
