@@ -1,6 +1,4 @@
-from itertools import product
 import os
-from unicodedata import category
 from webbrowser import get
 import django
 # Set environment variable > Django settings

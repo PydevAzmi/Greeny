@@ -55,7 +55,8 @@ class BrandList(ListView):
         context = super().get_context_data(**kwargs)
         context["categories"] = Category.objects.all
         # select_related() to prevent doing more queirs for each category 
-        context["brand_list"] = Brand.objects.select_related('category').all().annotate(product_count=Count('product_brand'))
+        context["brand_list"] = Brand.objects.select_related('category').all().annotate(
+            product_count=Count('product_brand'))
         return context
     
 
