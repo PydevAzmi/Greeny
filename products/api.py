@@ -46,7 +46,7 @@ class ProductListAPI(generics.ListAPIView):
     search_fields = ['name']
 
     # Authentication
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
 
 
 class ProductDetailAPI(generics.RetrieveAPIView):
@@ -74,3 +74,10 @@ class CategoryListAPI(generics.ListAPIView):
 class CategoryDetailAPI(generics.RetrieveAPIView):
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
+
+#view sets
+from rest_framework import viewsets
+
+class ProductViewSetsAPI(viewsets.ModelViewSet):
+    serializer_class = ProductSerializer
+    queryset = Product.objects.all()
